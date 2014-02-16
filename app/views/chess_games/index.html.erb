@@ -1,0 +1,33 @@
+<h3>Recorded Chess Games</h3>
+
+<table border=1>
+  <thead>
+    <tr>
+      <th>White player</th>
+      <th>Black player</th>
+      <th>Winner</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chess_games.each do |chess_game| %>
+      <% @white_player = chess_game.white_player
+         @black_player = chess_game.black_player %>
+      <tr>
+        <td><%= link_to "#{@white_player.name} (#{@white_player.rating})", @white_player %></td>
+        <td><%= link_to "#{@black_player.name} (#{@black_player.rating})" %></td>
+        <td><%= chess_game.winner_id %></td>
+        <td><%= link_to 'Show', chess_game %></td>
+        <td><%= link_to 'Edit', edit_chess_game_path(chess_game) %></td>
+        <td><%= link_to 'Destroy', chess_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Record New Game', new_chess_game_path %>
