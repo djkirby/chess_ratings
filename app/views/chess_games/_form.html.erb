@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :white_player_id %><br>
-    <%= f.number_field :white_player_id %>
+    <%= f.label :white_player_id, 'White Player' %><br>
+    <%= f.collection_select :white_player_id, Player.all, :id, :name %>
   </div>
   <div class="field">
-    <%= f.label :black_player_id %><br>
-    <%= f.number_field :black_player_id %>
+    <%= f.label :black_player_id, 'Black Player' %><br>
+    <%= f.collection_select :black_player_id, Player.all, :id, :name %>
   </div>
   <div class="field">
-    <%= f.label :winner_id %><br>
-    <%= f.number_field :winner_id %>
+    <%= f.label :winner_id, 'Winner' %><br>
+    <%= f.collection_select :winner_id, Player.all, :id, :name %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Record Game' %>
   </div>
 <% end %>

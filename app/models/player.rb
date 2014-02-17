@@ -3,6 +3,7 @@ class Player < ActiveRecord::Base
 
 	STARTING_RATING = 1450
 
+	# Updates the player's rating based on the game played
 	def updateRating(chess_game)
 		white_player = chess_game.white_player
 		black_player = chess_game.black_player
@@ -14,7 +15,7 @@ class Player < ActiveRecord::Base
 			loser = (winner == white_player ? black_player : white_player)
 		end
 		rating_disparity = 400
-		game_outcome = 0.5 # Stale mate
+		game_outcome = 0.5 # Stalemate
 		if chess_game.getWinner == self # Player won
 			game_outcome = 1
 		elsif chess_game.getLoser == self # Player lost

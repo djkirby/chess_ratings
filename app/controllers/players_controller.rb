@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    @players = Player.order(rating: :desc)
   end
 
   # GET /players/1
@@ -28,7 +28,7 @@ class PlayersController < ApplicationController
     @player.rating = Player::STARTING_RATING
     respond_to do |format|
       if @player.save
-        format.html { redirect_to @player, notice: 'Player was successfully created.' }
+        format.html { redirect_to players_path, notice: 'Added player to the system.' }
         format.json { render action: 'show', status: :created, location: @player }
       else
         format.html { render action: 'new' }

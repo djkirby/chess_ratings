@@ -28,7 +28,7 @@ class ChessGamesController < ApplicationController
     respond_to do |format|
       if @chess_game.save
         @chess_game.updatePlayerRatings
-        format.html { redirect_to @chess_game, notice: 'Chess game was successfully created.' }
+        format.html { redirect_to chess_games_path, notice: 'Recorded game and updated ratings.' }
         format.json { render action: 'show', status: :created, location: @chess_game }
       else
         format.html { render action: 'new' }

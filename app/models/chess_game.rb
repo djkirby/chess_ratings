@@ -10,20 +10,18 @@ class ChessGame < ActiveRecord::Base
   	def getWinner
   		if self.winner_id == 0
   			return nil
-  		elsif Player.find(self.winner_id) == self.white_player 
-  			return self.white_player
-  		elsif Player.find(self.winner_id) == self.black_player
-  			return self.black_player
+      else
+        return Player.find(self.winner_id)
   		end
   	end
 
   	def getLoser
   		if self.winner_id == 0
   			return nil
-		elsif Player.find(self.winner_id) == self.white_player 
-  			return self.black_player
-  		elsif Player.find(self.winner_id) == self.black_player
-  			return self.white_player
-  		end
+      elsif self.getWinner == self.white_player
+        return self.black_player
+      else
+        return self.white_player
+      end
   	end
 end
