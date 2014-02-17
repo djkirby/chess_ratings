@@ -25,9 +25,9 @@ class ChessGamesController < ApplicationController
   # POST /chess_games.json
   def create
     @chess_game = ChessGame.new(chess_game_params)
-
     respond_to do |format|
       if @chess_game.save
+        @chess_game.updatePlayerRatings
         format.html { redirect_to @chess_game, notice: 'Chess game was successfully created.' }
         format.json { render action: 'show', status: :created, location: @chess_game }
       else

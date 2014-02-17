@@ -1,8 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
 
-  STARTING_PLAYER_RATING = 1450
-
   # GET /players
   # GET /players.json
   def index
@@ -27,8 +25,7 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     @player = Player.new(player_params)
-    @player.rating = STARTING_PLAYER_RATING
-
+    @player.rating = Player::STARTING_RATING
     respond_to do |format|
       if @player.save
         format.html { redirect_to @player, notice: 'Player was successfully created.' }
