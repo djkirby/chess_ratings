@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :white_player_id, 'White Player' %><br>
+    <%= f.label :white_player_id, 'Player 1' %><br>
     <%= f.collection_select :white_player_id, Player.all, :id, :name %>
   </div>
   <div class="field">
-    <%= f.label :black_player_id, 'Black Player' %><br>
+    <%= f.label :black_player_id, 'Player 2' %><br>
     <%= f.collection_select :black_player_id, Player.all, :id, :name %>
   </div>
   <div class="field">
