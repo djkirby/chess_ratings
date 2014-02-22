@@ -27,8 +27,8 @@
     <tr>
       <th>Date</th>
       <th>Players</th>
-      <th />
-      <th />
+      <!--<th />
+      <th />-->
     </tr>
   </thead>
 
@@ -38,10 +38,10 @@
          black_player = chess_game.black_player %>
       <tr>
         <td><%= chess_game.created_at.strftime("%a %b. %d %Y") %></td>
-        <td><strong><%= link_to "#{white_player.name} (#{white_player.rating})", white_player, :class => getClass(chess_game, 1) %></strong> vs. 
-            <strong><%= link_to "#{black_player.name} (#{black_player.rating})", black_player, :class => getClass(chess_game, 2) %></strong></td>
-        <td><%= link_to '[Edit]', edit_chess_game_path(chess_game) %></td>
-        <td><%= link_to '[X]', chess_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><strong><%= link_to "#{white_player.name}", white_player, :class => getClass(chess_game, 1) %></strong> vs. 
+            <strong><%= link_to "#{black_player.name}", black_player, :class => getClass(chess_game, 2) %></strong></td>
+        <!--<td><%= link_to '[Edit]', edit_chess_game_path(chess_game) %></td>
+        <td><%= link_to '[X]', chess_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>

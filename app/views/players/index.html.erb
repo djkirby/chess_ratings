@@ -6,7 +6,7 @@
       <th>Rank</th>
       <th>Name</th>
       <th>Rating</th>
-      <th></th>
+      <!--<th></th>-->
     </tr>
   </thead>
 
@@ -16,7 +16,7 @@
         <td><%= @players.index(player) + 1 %></td>
         <td><%= link_to player.name, player %></td>
         <td><%= player.rating %></td>
-        <td><%= link_to '[X]', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!--<td><%= link_to '[X]', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>
