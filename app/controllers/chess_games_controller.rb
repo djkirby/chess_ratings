@@ -27,8 +27,8 @@ class ChessGamesController < ApplicationController
     @chess_game = ChessGame.new(chess_game_params)
     respond_to do |format|
       if @chess_game.save
-        @chess_game.updatePlayerRatings
-        format.html { redirect_to chess_games_path, notice: 'Recorded game and updated ratings.' }
+        ChessGame::updatePlayerRatings!
+        format.html { redirect_to root_path, notice: 'Recorded game and updated ratings.' }
         format.json { render action: 'show', status: :created, location: @chess_game }
       else
         format.html { render action: 'new' }
@@ -55,8 +55,9 @@ class ChessGamesController < ApplicationController
   # DELETE /chess_games/1.json
   def destroy
     @chess_game.destroy
+    ChessGame::updatePlayerRatings!
     respond_to do |format|
-      format.html { redirect_to chess_games_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end

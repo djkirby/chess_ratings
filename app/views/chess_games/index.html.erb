@@ -14,12 +14,10 @@
   <thead>
     <tr>
       <th>Date</th>
-      <th>White player</th>
-      <th>Black player</th>
+      <th>Players</th>
       <th>Winner</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th />
+      <th />
     </tr>
   </thead>
 
@@ -29,10 +27,9 @@
          black_player = chess_game.black_player %>
       <tr>
         <td><%= chess_game.created_at %></td>
-        <td><%= link_to "#{white_player.name} (#{white_player.rating})", white_player %></td>
-        <td><%= link_to "#{black_player.name} (#{black_player.rating})", black_player %></td>
+        <td><%= link_to "#{white_player.name} (#{white_player.rating})", white_player %> vs. 
+            <%= link_to "#{black_player.name} (#{black_player.rating})", black_player %></td>
         <td><%= outcome(chess_game) %></td>
-        <td><%= link_to 'Show', chess_game %>
         <td><%= link_to 'Edit', edit_chess_game_path(chess_game) %></td>
         <td><%= link_to '[X]', chess_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

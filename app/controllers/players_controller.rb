@@ -28,7 +28,7 @@ class PlayersController < ApplicationController
     @player.rating = Player::STARTING_RATING
     respond_to do |format|
       if @player.save
-        format.html { redirect_to players_path, notice: 'Added player to the system.' }
+        format.html { redirect_to root_path, notice: 'Added player to the system.' }
         format.json { render action: 'show', status: :created, location: @player }
       else
         format.html { render action: 'new' }
@@ -56,7 +56,7 @@ class PlayersController < ApplicationController
   def destroy
     @player.destroy
     respond_to do |format|
-      format.html { redirect_to players_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
