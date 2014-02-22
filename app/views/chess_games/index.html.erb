@@ -6,6 +6,18 @@
       return chess_game.getWinner.name
     end
   end
+
+  # Returns the class for a player's link
+  # Consumes a chess game and a player index (1 or 2)
+  def getClass(chess_game, player_index)
+    winner = chess_game.getWinner
+    return "stalemate" if !winner
+    if player_index == 1
+      return (winner == chess_game.white_player ? "winner" : "loser")
+    else
+      return (winner == chess_game.black_player ? "winner" : "loser")
+    end
+  end
 %>
 
 <h3>Recorded Chess Games</h3>
@@ -15,7 +27,6 @@
     <tr>
       <th>Date</th>
       <th>Players</th>
-      <th>Winner</th>
       <th />
       <th />
     </tr>
@@ -27,9 +38,8 @@
          black_player = chess_game.black_player %>
       <tr>
         <td><%= chess_game.created_at %></td>
-        <td><%= link_to "#{white_player.name} (#{white_player.rating})", white_player %> vs. 
-            <%= link_to "#{black_player.name} (#{black_player.rating})", black_player %></td>
-        <td><%= outcome(chess_game) %></td>
+        <td><strong><%= link_to "#{white_player.name} (#{white_player.rating})", white_player, :class => getClass(chess_game, 1) %></strong> vs. 
+            <strong><%= link_to "#{black_player.name} (#{black_player.rating})", black_player, :class => getClass(chess_game, 2) %></strong></td>
         <td><%= link_to 'Edit', edit_chess_game_path(chess_game) %></td>
         <td><%= link_to '[X]', chess_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
