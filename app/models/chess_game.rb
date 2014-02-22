@@ -26,7 +26,6 @@ class ChessGame < ActiveRecord::Base
             else
                 delta_elo = chess_game.calculateDeltaEloRating(ratings, 0.5)
             end
-
             logger.debug "___ #{player1.name} (#{ratings[player1.id]}->#{ratings[player1.id] + delta_elo}) vs #{player2.name} (#{ratings[player2.id]}->#{ratings[player2.id] - delta_elo})"
             ratings[player1.id] += delta_elo
             ratings[player2.id] -= delta_elo
@@ -64,8 +63,14 @@ class ChessGame < ActiveRecord::Base
         elsif ratings[white_player.id] > 2400 and ratings[black_player.id] > 2400
             k_factor = 16
         end
-        delta_rating = (k_factor * (game_outcome - (1.0 / (10.0 ** (-score_difference.to_f / rating_disparity.to_f) + 1)))).floor
-        logger.debug "___ delta_rating=#{delta_rating} k_factor=#{k_factor} game_outcome=#{game_outcome} score_difference=#{score_difference} rating_disparity=#{rating_disparity}"
+        delta_rating = (k_factor * (game_outcome - (1.0 / (10.0 ** (-score_difference.to_f / rating_disparity.to_f) + 1))))
+        if delta_rating < 0
+            delta_rating = -1 * delta_rating.abs.floor
+        else
+            delta_rating = delta_rating.floor
+        end
+        logger.debug "___ k_factor=#{k_factor} game_outcome=#{game_outcome} score_difference=#{score_difference} rating_disparity=#{rating_disparity}"
+        logger.debug "___ delta_rating=#{delta_rating}"
         return delta_rating
     end
 
