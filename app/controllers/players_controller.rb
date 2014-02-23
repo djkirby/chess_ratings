@@ -10,6 +10,11 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
+    player = Player.find(params[:id])
+    @chess_games = player.getGames
+    @wins = player.getWins
+    @losses = player.getLosses
+    @stalemates = player.getStaleMates
   end
 
   # GET /players/new

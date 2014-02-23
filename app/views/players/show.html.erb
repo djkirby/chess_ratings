@@ -1,14 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @player.name %>
-</p>
+<h2><%= @player.name %> (<%= @player.rating %>)</h2>
+<h5><strong>Record: <%= @wins %> <%= 'win'.pluralize(@wins) %>, <%= @losses %> <%= 'loss'.pluralize(@losses) %>, <%= @stalemates %> <%= 'stalemate'.pluralize(@stalemates) %></strong></h5>
 
-<p>
-  <strong>Rating:</strong>
-  <%= @player.rating %>
-</p>
+<br />
+
+<h4>Games Played</h4>
+
+<table border=1>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Players</th>
+      <!--<th />
+      <th />-->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chess_games.each do |chess_game| %>
+      <% white_player = chess_game.white_player
+         black_player = chess_game.black_player %>
+      <tr>
+        <td><%= chess_game.created_at.strftime("%a %b. %d %Y") %></td>
+        <td><strong><%= link_to "#{white_player.name}", white_player, :class => getClass(chess_game, 1) %></strong> vs. 
+            <strong><%= link_to "#{black_player.name}", black_player, :class => getClass(chess_game, 2) %></strong></td>
+        <!--<td><%= link_to '[Edit]', edit_chess_game_path(chess_game) %></td>
+        <td><%= link_to '[X]', chess_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
 
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>
