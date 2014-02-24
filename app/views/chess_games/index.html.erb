@@ -49,4 +49,6 @@
 
 <br>
 
-<%= button_to "Record Game", new_chess_game_path, :method => 'get', :class => 'btn btn-default' %>
+<%= button_to new_chess_game_path, :method => 'get', :class => 'btn btn-default' do %>
+  <span class='glyphicon glyphicon-plus'></span> Record Game
+<% end %>

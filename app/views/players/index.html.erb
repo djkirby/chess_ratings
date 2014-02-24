@@ -24,4 +24,6 @@
 
 <br>
 
-<%= button_to "Add Player", new_player_path, :method => 'get', :class => 'btn btn-default' %>
+<%= button_to new_player_path, :method => 'get', :class => 'btn btn-default' do %>
+  <span class='glyphicon glyphicon-plus'></span> Add Player
+<% end %>
