@@ -1,7 +1,5 @@
-<div style='float:left;'>
-	<%= render :file => 'players/index' %>
-</div>
-
-<div style='float:right;'>
-	<%= render :file => 'chess_games/index' %>
+<div class='row'>
+	<div class='col-md-4'><%= render :file => 'players/index' %></div>
+	<div class='col-md-4'><%= render 'layouts/buttons' %></div>
+	<div class='col-md-4'><%= render :file => 'chess_games/index' %></div>
 </div>
