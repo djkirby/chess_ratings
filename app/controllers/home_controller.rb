@@ -4,6 +4,6 @@ class HomeController < ApplicationController
 		provisional_players = Player.order(rating: :desc).all.select { |p| p.getRating == 'PRO' }
 
 		@players = rated_players + provisional_players
-		@chess_games = ChessGame.all
+		@chess_games = ChessGame.all.order(created_at: :desc)
 	end
 end
