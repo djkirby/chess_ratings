@@ -2,6 +2,7 @@ class Player < ActiveRecord::Base
 	has_many :chess_games # destroy dependent?
 
 	STARTING_RATING = 1450
+	GAMES_WHILE_PROVISIONAL = 8
 
 	def getWins
 		games = self.getGames
@@ -20,5 +21,13 @@ class Player < ActiveRecord::Base
 
 	def getGames
 		return ChessGame.where("white_player_id = ? or black_player_id = ?", self.id, self.id)
+	end
+
+	def getRating
+		if self.getGames.count < GAMES_WHILE_PROVISIONAL
+			return 'PRO'
+		else
+			return self.rating
+		end
 	end
 end

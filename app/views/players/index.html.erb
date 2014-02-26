@@ -13,9 +13,9 @@
   <tbody>
     <% @players.each do |player| %>
       <tr>
-        <td><%= @players.index(player) + 1 %></td>
+        <td><%= @players.index(player) + 1 if player.getRating != 'PRO' %></td>
         <td><%= link_to player.name, player %> (<%= player.getWins %>-<%= player.getLosses %>-<%= player.getStaleMates %>)</td>
-        <td><%= player.rating %></td>
+        <td><%= player.getRating %></td>
         <!--<td><%= link_to '[X]', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
