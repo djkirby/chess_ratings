@@ -2,7 +2,7 @@ class Player < ActiveRecord::Base
 	has_many :chess_games # destroy dependent?
 
 	STARTING_RATING = 1450
-	GAMES_WHILE_PROVISIONAL = 6
+	GAMES_WHILE_PROVISIONAL = 4
 
 	def getWins
 		games = self.getGames
